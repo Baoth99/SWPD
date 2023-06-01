@@ -51,6 +51,8 @@ jobs:
       - name: Sync To Azure DevOps
         run: |
           echo "Sync To Azure DevOps"
+          git -v
+          
 
 
         
