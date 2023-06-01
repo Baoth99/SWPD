@@ -39,7 +39,6 @@ jobs:
       - name: Run UnitTest
         run: |
           cd SWPD.UT
-          ls
-          echo "Unit Test"
+          cd dotnet test
 
         
