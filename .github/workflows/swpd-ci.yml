@@ -1,0 +1,45 @@
+name: BUILD AND SYNC TO AZURE REPO
+
+run-name: Run by @${{ github.actor }}
+
+env:
+  AZURE_DEVOPS_KEY: ACCESS_KEY
+  DOTNET_VERSION: '6.0.x'
+
+on: 
+  label:
+    types:
+      - created
+  push:
+    branches: 
+      - master
+
+jobs:
+  run_unit_test:
+    name: Run Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Check .NET Version
+        run: dotnet --version
+
+      - name: Restore 
+        run: dotnet restore
+      - name: Clean and build
+        run: |
+          cd SWPD.WebApi
+          dotnet clean
+          dotnet build
+      - name: Run UnitTest
+        run: |
+          cd SWPD.UT
+          ls
+          echo "Unit Test"
+
+        
