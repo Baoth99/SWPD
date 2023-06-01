@@ -39,6 +39,6 @@ jobs:
       - name: Run UnitTest
         run: |
           cd SWPD.UT
-          cd dotnet test
+          dotnet test
 
         
