@@ -16,7 +16,7 @@ on:
 
 jobs:
   run_unit_test:
-    name: Run Unit Test
+    name: ci_job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,7 +33,10 @@ jobs:
         run: dotnet restore
 
       - name: Git Log
-        run: git log -n 2 --pretty > SWPD/SWPD.WebApi/Version.txt
+
+        run: |
+          cd SWPD.WebApi
+          git log -n 2 --pretty > Version.txt
 
       - name: Clean and build
         run: |
