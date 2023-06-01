@@ -31,14 +31,23 @@ jobs:
 
       - name: Restore 
         run: dotnet restore
+
+      - name: Git Log
+        run: git log -n 2 --pretty > SWPD/SWPD.WebApi/Version.txt
+
       - name: Clean and build
         run: |
           cd SWPD.WebApi
           dotnet clean
           dotnet build
+
       - name: Run UnitTest
         run: |
           cd SWPD.UT
           dotnet test
+      - name: Sync To Azure DevOps
+        run: |
+          echo "Sync To Azure DevOps"
+
 
         
